@@ -1,0 +1,21 @@
+services:
+  node:
+    image: "node:20.10.0-alpine3.19"
+    tty: true
+    working_dir: "/opt/app"
+    volumes:
+      - "./src:/opt/app"
+      - "./docker/.npmrc:/home/node/.npmrc"
+      - "./node_modules:/home/node/node_modules"
+    user: "node"
+    environment:
+      NODE_PATH: "/home/node/node_modules:/usr/local/lib/node_modules"
+    ports:
+      - "3000:3000"
+    networks:
+      - "shared-network"
+      - "default"
+networks:
+  shared-network:
+    name: "work-tools"
+  default:
