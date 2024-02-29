@@ -18,6 +18,10 @@ phases:
       - echo REPOSITORY_URI = ${REPOSITORY_URI}
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=latest
+      - TOKEN=$(aws sts get-session-token)
+      - AWS_ACCESS_KEY_ID=$(echo "${TOKEN}" | jq -r '.Credentials.AccessKeyId')
+      - AWS_SECRET_ACCESS_KEY=$(echo "${TOKEN}" | jq -r '.Credentials.SecretAccessKey')
+      - AWS_SESSION_TOKEN=$(echo "${TOKEN}" | jq -r '.Credentials.SessionToken')
   build:
     commands:
       - echo Build started on `date`
