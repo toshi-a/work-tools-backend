@@ -32,18 +32,10 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo "--------------------"
-      - curl 169.254.170.2${AWS_CONTAINER_CREDENTIALS_RELATIVE_URI}
-      - env
-      - echo "--------------------"
+      - docker context create ecs --from-env
+      - docker context ls
+#      - echo "--------------------"
+#      - env
+#      - echo "--------------------"
       - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}
       # docker push 212517848830.dkr.ecr.ap-northeast-1.amazonaws.com/toshi/work-tools-backend:latest
-
-
-
-#    "RoleArn":"AQICAHh3CCnsCNrnpoKz7FwlavSpwTJLcUEaiUAWrPVFY51joQHfMOFEnGhRDPb/AsvIKvInAAAA+jCB9wYJKoZIhvcNAQcGoIHpMIHmAgEAMIHgBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDAORWewxJzGPR60e6AIBEICBst7rj1MsSPQzsk6VZ86MEcWQzUMhFlajX4z34EHwB9IzenZTufuIRYbH6Efw9kL0ZqN88XbesrdlzCdZsp9daryYY1l165HTHuMDROmo6+Z3q8EoRonzEz3FgOMzfsYvWxL7FOKNOUlW6D7LBFzEBIWSDgt3technyySOPRtGyekpLTAYhl78EycK0/0MYoJnt1o5bWbotmNqpf+hPj1m/kPdvtKR5zW8xYIBFnunosCOJ8=",
-#    "AccessKeyId":"ASIATC6YNA37LIUZDSGK",
-#    "SecretAccessKey":"***",
-#    "Token":"IQoJb3JpZ2luX2VjECEaDmFwLW5vcnRoZWFzdC0xIkYwRAIgEhs0AYYI6Whlx+op2SyWzkp9O8nuN2JtxuE7o+G8LwcCIDHHyW2X1EN5uPn48Woims4Ayoq1clDuPSzRMLRK7AHUKq4DCBoQBBoMMjEyNTE3ODQ4ODMwIgy4Zg06CRRiz5/kQMoqiwO/D6vVDqwJ4VHy6Y9Rqxm0cZ3TCwXdEdaPbWWBPTds/cjiR4q4H/N5Ef2F/smeicaBRa2dCQ90EZJxMHF+i9osJ7RVXBtcBHmFhOKJeKosL77v04GSfolWg8tgx3doFCQ9UaYsqevp7woewoR/Pb4/7E69Q+yBspx25Kdd9kJl674EuSM1O6m7pDf4FJOlTntR59jgd47I32iZimmLA8V9BW0wS1sj8ndhAk1GgcKuPaAu5n5c9PVYjMRRC8NK9/+vesWdcEBu+WP3QiJKCzgZfv41Cv/izQcMifOwuV04eHMGJkoQ5aJM4ZRoRYC5Er/CzcdRI1yiyh9qcVqOtXwI3v8UPF6PAzr+mnYIwq2dYTlgXbIgn9PBCqj4GZgKDC+gIQGWHKnWzcuZdVYf3lpb3Onh02q2j41gs/yYC+s9QzFbbLHtz6CQJVCIdQtpU8td+KCxNcRRf5HDZlPiDkbOygUE+Zc7qUQJX9WE8ZCQkL12oRUVzOYVgOgU+iS4MpVpMPSOXboCih90GzDY6YKvBjqUATU8+KlsFS51WVnOLQaL5mHs83XC9xNqLLYHTDIO4IGCymjIy5oEX4q1U9WrkI5XuBBC4P5fpm9/Q9pq//pw7qZFHA1YyYO/j/bWQ6OrCEScuPvUb95JTSwjd7sFZpS2nW3eLalx6u6k6zzrlk0lk0hbwDyJVMHfnqwvyye3phRrb9+BD9ZpYI7diTjo1ARiTD8IVt4=",
-#    "Expiration":"2024-02-29T17:46:16Z"}
-
