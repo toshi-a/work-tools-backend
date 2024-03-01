@@ -36,9 +36,13 @@ phases:
     commands:
       - echo Build completed on `date`
       - docker context create ecs ecscontext --from-env
-      - docker context ls
+      - docker context use ecscontext
+      - docker --debug compose convert > cloudformation.yml
 #      - echo "--------------------"
 #      - env
 #      - echo "--------------------"
       - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}
       # docker push 212517848830.dkr.ecr.ap-northeast-1.amazonaws.com/toshi/work-tools-backend:latest
+  artifacts:
+    files:
+      - cloudformation.yml
