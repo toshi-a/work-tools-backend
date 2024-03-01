@@ -19,9 +19,10 @@ phases:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=latest
       - TOKEN=$(curl 169.254.170.2${AWS_CONTAINER_CREDENTIALS_RELATIVE_URI})
-      - AWS_ACCESS_KEY_ID=$(echo "${TOKEN}" | jq -r '.Credentials.AccessKeyId')
-      - AWS_SECRET_ACCESS_KEY=$(echo "${TOKEN}" | jq -r '.Credentials.SecretAccessKey')
-      - AWS_SESSION_TOKEN=$(echo "${TOKEN}" | jq -r '.Credentials.SessionToken')
+      - AWS_ACCESS_KEY_ID=$(echo "${TOKEN}" | jq -r '.AccessKeyId')
+      - AWS_SECRET_ACCESS_KEY=$(echo "${TOKEN}" | jq -r '.SecretAccessKey')
+      - AWS_SESSION_TOKEN=$(echo "${TOKEN}" | jq -r '.Token')
+      - AWS_TOKEN=$(echo "${TOKEN}" | jq -r '.Token')
   build:
     commands:
       - echo Build started on `date`
