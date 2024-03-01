@@ -32,7 +32,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker context create ecs --from-env
+      - docker context create ecs ecscontext --from-env
       - docker context ls
 #      - echo "--------------------"
 #      - env
