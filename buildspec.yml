@@ -5,6 +5,9 @@ batch:
 
 phases:
   install:
+    commands:
+      - mv /usr/local/bin/docker /usr/bin/docker
+      - curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh
     runtime-versions:
       nodejs: 18.x
   pre_build:
